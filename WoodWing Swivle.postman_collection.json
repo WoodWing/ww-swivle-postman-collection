@@ -1,0 +1,953 @@
+{
+	"info": {
+		"_postman_id": "32c765ef-3fed-42e0-9819-9ea44aa6055d",
+		"name": "WoodWing Swivle",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2558053"
+	},
+	"item": [
+		{
+			"name": "Authenticate",
+			"item": [
+				{
+					"name": "api-key-login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"apiKey\":\"{{apiKey}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Swivle API URL}}/auth/api-key-login",
+							"host": [
+								"{{Swivle API URL}}"
+							],
+							"path": [
+								"auth",
+								"api-key-login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Manage Assets",
+			"item": [
+				{
+					"name": "Create and Upload Assets",
+					"item": [
+						{
+							"name": "Create Asset Placeholder",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"assetPath\": \"/Demo Zone/Postman/placeholder-10.jpg\",\n  \"autoRename\": true,\n  \"metadata\": {\n      \"tags\":\"Postman\"\n  },\n  \"metadataToReturn\": [\n    \"tags\"\n  ],\n  \"normalizeAssetPath\": true,\n  \"normalizePath\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{Swivle API URL}}/api/asset",
+									"host": [
+										"{{Swivle API URL}}"
+									],
+									"path": [
+										"api",
+										"asset"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Put Asset using UploadURL",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "file",
+									"file": {
+										"src": "/Users/jgapp/Pictures/IMG_7082.jpg"
+									}
+								},
+								"url": {
+									"raw": "{{uploadUrl}}",
+									"host": [
+										"{{uploadUrl}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Version via multi-part POST",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "id",
+											"value": "{{assetId}}",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/Users/jgapp/Pictures/IMG_7082.jpg"
+										},
+										{
+											"key": "createVersion",
+											"value": "true",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{Swivle API URL}}/api/asset/{{assetId}}/original",
+									"host": [
+										"{{Swivle API URL}}"
+									],
+									"path": [
+										"api",
+										"asset",
+										"{{assetId}}",
+										"original"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Version via PUT",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "createVersion",
+											"value": "true",
+											"type": "text"
+										},
+										{
+											"key": "id",
+											"value": "{{assetId}}",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/Users/jgapp/Pictures/IMG_7082.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{Swivle API URL}}/api/asset/{{assetId}}/original",
+									"host": [
+										"{{Swivle API URL}}"
+									],
+									"path": [
+										"api",
+										"asset",
+										"{{assetId}}",
+										"original"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get Asset by Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Swivle API URL}}/api/asset/{{assetId}}",
+							"host": [
+								"{{Swivle API URL}}"
+							],
+							"path": [
+								"api",
+								"asset",
+								"{{assetId}}"
+							]
+						},
+						"description": "Use this call to get an asset from Swivle"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Asset by Id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Swivle API URL}}/api/asset/{{assetId}}",
+							"host": [
+								"{{Swivle API URL}}"
+							],
+							"path": [
+								"api",
+								"asset",
+								"{{assetId}}"
+							]
+						},
+						"description": "Use this call to get an asset from Swivle"
+					},
+					"response": []
+				},
+				{
+					"name": "Copy Asset",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"targetPath\": \"/Demo Zone/Postman/placeholder-10-copy.jpg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Swivle API URL}}/api/asset/{{assetId}}/copy",
+							"host": [
+								"{{Swivle API URL}}"
+							],
+							"path": [
+								"api",
+								"asset",
+								"{{assetId}}",
+								"copy"
+							]
+						},
+						"description": "Use this call to get an asset from Swivle"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Asset Metadata",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tags\":\"myTags\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Swivle API URL}}/api/asset/{{assetId}}/metadata",
+							"host": [
+								"{{Swivle API URL}}"
+							],
+							"path": [
+								"api",
+								"asset",
+								"{{assetId}}",
+								"metadata"
+							]
+						},
+						"description": "Use this call to get an asset from Swivle"
+					},
+					"response": []
+				},
+				{
+					"name": "Move Asset",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"targetPath\": \"/Demo Zone/PostMan2/placeholder-10.jpg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Swivle API URL}}/api/asset/{{assetId}}/move",
+							"host": [
+								"{{Swivle API URL}}"
+							],
+							"path": [
+								"api",
+								"asset",
+								"{{assetId}}",
+								"move"
+							]
+						},
+						"description": "Use this call to get an asset from Swivle"
+					},
+					"response": []
+				},
+				{
+					"name": "Download Asset File",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Swivle API URL}}/api/asset/{{assetId}}/original",
+							"host": [
+								"{{Swivle API URL}}"
+							],
+							"path": [
+								"api",
+								"asset",
+								"{{assetId}}",
+								"original"
+							]
+						},
+						"description": "Use this call to get an asset from Swivle"
+					},
+					"response": []
+				},
+				{
+					"name": "Download Asset Preview",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Swivle API URL}}/api/asset/{{assetId}}/preview",
+							"host": [
+								"{{Swivle API URL}}"
+							],
+							"path": [
+								"api",
+								"asset",
+								"{{assetId}}",
+								"preview"
+							]
+						},
+						"description": "Use this call to get an asset from Swivle"
+					},
+					"response": []
+				},
+				{
+					"name": "Download Asset Thumbnail",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Swivle API URL}}/api/asset/{{assetId}}/thumbnail",
+							"host": [
+								"{{Swivle API URL}}"
+							],
+							"path": [
+								"api",
+								"asset",
+								"{{assetId}}",
+								"thumbnail"
+							]
+						},
+						"description": "Use this call to get an asset from Swivle"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Collections",
+			"item": [
+				{
+					"name": "Create Collection",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"autoRename\": true,\n  \"childAssetIds\": [\n    \"\"\n  ],\n  \"folderPath\": \"/Demo Zone/Postman/\",\n  \"metadata\": {\n      \"tags\":\"Created via Postman\"\n  },\n  \"metadataToReturn\": [\n    \"tags\"\n  ],\n  \"name\": \"MyCollection\",\n  \"normalizePath\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Swivle API URL}}/api/collection",
+							"host": [
+								"{{Swivle API URL}}"
+							],
+							"path": [
+								"api",
+								"collection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve Collection by Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Swivle API URL}}/api/collection/{{collectionId}}",
+							"host": [
+								"{{Swivle API URL}}"
+							],
+							"path": [
+								"api",
+								"collection",
+								"{{collectionId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Collection by Id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Swivle API URL}}/api/collection/{{collectionId}}",
+							"host": [
+								"{{Swivle API URL}}"
+							],
+							"path": [
+								"api",
+								"collection",
+								"{{collectionId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Children to Collection",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    \"{{assetId}}\"\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Swivle API URL}}/api/collection/{{collectionId}}/children/add",
+							"host": [
+								"{{Swivle API URL}}"
+							],
+							"path": [
+								"api",
+								"collection",
+								"{{collectionId}}",
+								"children",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Children from Collection",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    \"{{assetId}}\"\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Swivle API URL}}/api/collection/{{collectionId}}/children/remove",
+							"host": [
+								"{{Swivle API URL}}"
+							],
+							"path": [
+								"api",
+								"collection",
+								"{{collectionId}}",
+								"children",
+								"remove"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Collection Metadata",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tags\":\"myTaggedCollection\",\n    \"rating\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Swivle API URL}}/api/collection/{{collectionId}}/metadata",
+							"host": [
+								"{{Swivle API URL}}"
+							],
+							"path": [
+								"api",
+								"collection",
+								"{{collectionId}}",
+								"metadata"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Move Collection",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"targetPath\": \"/Demo Zone/PostMan2/myPlaceholder.collection\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Swivle API URL}}/api/collection/{{collectionId}}/move",
+							"host": [
+								"{{Swivle API URL}}"
+							],
+							"path": [
+								"api",
+								"collection",
+								"{{collectionId}}",
+								"move"
+							]
+						},
+						"description": "Use this call to get an asset from Swivle"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Folders",
+			"item": [
+				{
+					"name": "Create a Folder",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"folderPath\": \"/Demo Zone/Postman/My New Folder\",\n  \"normalizePath\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Swivle API URL}}/api/folder",
+							"host": [
+								"{{Swivle API URL}}"
+							],
+							"path": [
+								"api",
+								"folder"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve Folder by Path",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Swivle API URL}}/api/folder?path=/Demo Zone/Postman/My New Folder",
+							"host": [
+								"{{Swivle API URL}}"
+							],
+							"path": [
+								"api",
+								"folder"
+							],
+							"query": [
+								{
+									"key": "path",
+									"value": "/Demo Zone/Postman/My New Folder"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve Folder by Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Swivle API URL}}/api/folder/{{folderId}}",
+							"host": [
+								"{{Swivle API URL}}"
+							],
+							"path": [
+								"api",
+								"folder",
+								"{{folderId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Move a Folder",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"targetPath\": \"/Demo Zone/Postman2/My New Folder\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Swivle API URL}}/api/folder/{{folderId}}/move",
+							"host": [
+								"{{Swivle API URL}}"
+							],
+							"path": [
+								"api",
+								"folder",
+								"{{folderId}}",
+								"move"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Folder",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"targetPath\": \"/Demo Zone/Postman2/My New Folder\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Swivle API URL}}/api/folder/{{folderId}}",
+							"host": [
+								"{{Swivle API URL}}"
+							],
+							"path": [
+								"api",
+								"folder",
+								"{{folderId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Search",
+			"item": [
+				{
+					"name": "Retrieve Folder by Path Copy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Swivle API URL}}/api/search?q=Postman&types=Asset, Collection, Folder",
+							"host": [
+								"{{Swivle API URL}}"
+							],
+							"path": [
+								"api",
+								"search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "Postman"
+								},
+								{
+									"key": "from",
+									"value": "4",
+									"description": "Default value: 0, The offset from the first result you want to fetch.",
+									"disabled": true
+								},
+								{
+									"key": "size",
+									"value": "50",
+									"description": "The maximum amount of hits to be returned. If your query has more results, use the nextPageUrl returned in the response to retrieve the next batch.\n\nDefault: 50",
+									"disabled": true
+								},
+								{
+									"key": "types",
+									"value": "Asset, Collection, Folder",
+									"description": "Asset, Collection, Folder"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sharelinks",
+			"item": [
+				{
+					"name": "Create a Sharelink",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"subject\": \"my sharelink subject\",\n  \"description\": \"using postman to create sharelink\",\n  \"validUntil\": \"2024-01-01T13:37:00Z\",\n  \"query\": \"string\",\n  \"sharedAssetIds\": [\n    \"{{assetId}}\"\n  ],\n  \"requestUpload\": true,\n  \"uploadFolderPath\": \"string\",\n  \"requestApproval\": true,\n  \"notifyEmail\": \"123@email.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Swivle API URL}}/api/sharelink",
+							"host": [
+								"{{Swivle API URL}}"
+							],
+							"path": [
+								"api",
+								"sharelink"
+							]
+						},
+						"description": "If you want to share a collection see below for the appropriate key/value combination\n\n{ \"subject\": \"my sharelink subject\", \"description\": \"using postman to create sharelink\", \"validUntil\": \"2024-01-01T13:37:00Z\", \"query\": \"string\", \"sharedAssetIds\": \\[ \"{{assetId}}\" \\], \"sharedContainerId\": \"string\", \"requestUpload\": true, \"uploadFolderPath\": \"string\", \"requestApproval\": true, \"notifyEmail\": \"string\"}"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
