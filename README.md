@@ -27,12 +27,12 @@ The relationship between the Collection and the Environments is particularly hel
 
 In our environment, named 'WoodWing Swivle', we have a variety of variables:
 
-Swivle API URL - Add to the body parameters as {{Swivle API URL}}
-uploadUrl - Add to the body parameters as {{uploadUrl}}
-apiKey - Add to the body parameters as {{apiKey}}
-authToken - Add to the body parameters as {{authToken}}
-assetId - Add to the body parameters as {{assetId}}
-folderId - Add to the body parameters as {{folderId}}
+- Swivle API URL: Add to the body parameters as {{Swivle API URL}}
+- uploadUrl: Add to the body parameters as {{uploadUrl}}
+- apiKey: Add to the body parameters as {{apiKey}}
+- authToken: Add to the body parameters as {{authToken}}
+- assetId: Add to the body parameters as {{assetId}}
+- folderId: Add to the body parameters as {{folderId}}
 
 # List of calls within the collection
 
