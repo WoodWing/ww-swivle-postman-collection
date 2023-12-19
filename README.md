@@ -12,6 +12,8 @@ That includes the following:
 
 In some cases we have added parameters to the calls so that they may be more useful as a starting point.
 
+Note that the starting point for this collection is going into Swivle and obtaining the API Key via the management console. 
+
 # Postman Explanation
 
 When creating this collection we considered three parts of Postman's capabilities:
