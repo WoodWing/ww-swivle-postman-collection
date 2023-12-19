@@ -25,7 +25,7 @@ Please note that to use this collection you will need to create your Environment
 
 The relationship between the Collection and the Environments is particularly helpful. Environments allows us to create variables, attach values to the variables and then pass the variable value(s) to subsequent calls. The variables can be used calling each individual call within the collection or you can set up a Flow to use them.
 
-In our environment, named 'WoodWing Studio', we have a variety of variables:
+In our environment, named 'WoodWing Swivle', we have a variety of variables:
 
 Swivle API URL - Add to the body parameters as {{Swivle API URL}}
 uploadUrl - Add to the body parameters as {{uploadUrl}}
@@ -37,43 +37,43 @@ folderId - Add to the body parameters as {{folderId}}
 # List of calls within the collection
 
 Authentication
-1. api-key-login
+- api-key-login
 
 Manage Assets
-1. Create Asset Placeholder
-2. Put Asset using Upload URL
-3. Create version via multi-part POST
-4. Create version via PUT
-5. Get Asset by ID
-6. Delete Asset by ID
-7. Copy Asset
-8. Update Asset Metadata
-9. Move Asset
-10. Download Asset File
-11. Download Asset Preview
-12. Download Asset Thumbnail
+- Create Asset Placeholder
+- Put Asset using Upload URL
+- Create version via multi-part POST
+- Create version via PUT
+- Get Asset by ID
+- Delete Asset by ID
+- Copy Asset
+- Update Asset Metadata
+- Move Asset
+- Download Asset File
+- Download Asset Preview
+- Download Asset Thumbnail
 
 Collection
-1. Create Collection
-2. Retrieve Collection by Id
-3. Delete Collection by Id
-4. Add Children to Collection
-5. Remove Children from Collection
-6. Update Collection Metadata
-7. Move Collection
+- Create Collection
+- Retrieve Collection by Id
+- Delete Collection by Id
+- Add Children to Collection
+- Remove Children from Collection
+- Update Collection Metadata
+- Move Collection
    
 Folders
-1. Create a folder
-2. Retrieve Folder by Path
-3. Retrieve Folder by Id
-4. Move a Folder
-5. Delete a Folder
+- Create a folder
+- Retrieve Folder by Path
+- Retrieve Folder by Id
+- Move a Folder
+- Delete a Folder
    
 Search
-1. Search
+- Search
    
 Sharelinks
-1. Create a Sharelink
+- Create a Sharelink
 
 # Release Notes
 v0.1 - Initial release of the collection
