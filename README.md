@@ -33,6 +33,7 @@ In our environment, named 'WoodWing Swivle', we have a variety of variables:
 - apiKey: Add to the body parameters as {{apiKey}}
 - authToken: Add to the body parameters as {{authToken}}
 - assetId: Add to the body parameters as {{assetId}}
+- collectionId: Add to the body parameters as {{collectionId}}
 - folderId: Add to the body parameters as {{folderId}}
 
 # List of calls within the collection
@@ -77,4 +78,5 @@ Sharelinks
 - Create a Sharelink
 
 # Release Notes
-v0.1 - Initial release of the collection
+1. v0.1 - Initial release of the collection
+2. v0.2 - Added an environment file to the repository. Updated information about the variables needed for the environment.
